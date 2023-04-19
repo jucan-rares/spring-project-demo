@@ -10,24 +10,23 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "cars")
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int carID;
-    @Column
+    @Column(name = "brand")
     private String brand;
-    @Column
+    @Column(name = "model")
     private String model;
-    @Column
+    @Column(name = "year_of_production")
     private int year;
-    @Column
+    @Column(name = "color")
     private String color;
-    @Column
-    private String damage;
-    @Column
-    private String owner;
+    @ManyToOne
+    @JoinColumn(name = "owner_of_the_car")
+    private User owner;
     @Override
     public String toString() {
         return "Car{" +

@@ -12,20 +12,21 @@ import java.sql.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "repairs")
 public class Repair {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int repairID;
-    @Column(unique = true)
-    private int carID;
-    @Column
+    @ManyToOne
+    @JoinColumn(name = "car")
+    private Car car;
+    @Column(name = "damage_description", length = 1000)
     private String damage;
-    @Column
+    @Column(name = "repair_total")
     private int price;
-    @Column
+    @Column(name = "arrival_date")
     private Date inDate;
-    @Column
+    @Column(name = "leaving_date")
     private Date outDate;
 }

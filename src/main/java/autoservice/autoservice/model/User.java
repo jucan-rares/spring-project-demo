@@ -13,21 +13,21 @@ import java.security.NoSuchAlgorithmException;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Entity(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userID;
-    @Column
+    @Column(name = "role")
     private String role;
-    @Column(unique = true)
+    @Column(name = "username", unique = true)
     private String username;
-    @Column
+    @Column(name = "password")
     private String password;
-    @Column(unique = true)
+    @Column(name = "email", unique = true)
     private String email;
-    @Column(unique = true)
+    @Column(name = "phone_number", unique = true)
     private String phoneNumber;
 
     public void encrypt() {
