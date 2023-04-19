@@ -19,11 +19,6 @@ public class AutoServiceApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception{
 
-		User user = new User();
-		user.setUsername("jucan_rares");
-		user.setPassword("password");
-		user.setRole("Admin");
-
 	}
 
 }
