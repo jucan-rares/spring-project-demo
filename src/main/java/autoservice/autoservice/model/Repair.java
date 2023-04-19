@@ -1,9 +1,6 @@
 package autoservice.autoservice.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +12,7 @@ import java.sql.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Repair {
 
     @Id
@@ -22,7 +20,7 @@ public class Repair {
     private int repairID;
     @Column(unique = true)
     private int carID;
-    @Column(length = 256)
+    @Column
     private String damage;
     @Column
     private int price;
@@ -30,12 +28,4 @@ public class Repair {
     private Date inDate;
     @Column
     private Date outDate;
-
-    public Repair(int carID, String damage, int price, Date inDate, Date outDate) {
-        this.carID = carID;
-        this.damage = damage;
-        this.price = price;
-        this.inDate = inDate;
-        this.outDate = outDate;
-    }
 }

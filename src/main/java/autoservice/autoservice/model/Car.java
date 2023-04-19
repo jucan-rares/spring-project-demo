@@ -1,9 +1,6 @@
 package autoservice.autoservice.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,33 +10,24 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int carID;
-    @Column(length = 45)
+    @Column
     private String brand;
-    @Column(length = 45)
+    @Column
     private String model;
-    @Column(length = 45)
+    @Column
     private int year;
-    @Column(length = 45)
+    @Column
     private String color;
-    @Column(length = 45)
+    @Column
     private String damage;
-    @Column(length = 45)
+    @Column
     private String owner;
-
-    public Car(String brand, String model, int year, String color, String damage, String owner) {
-        this.brand = brand;
-        this.model = model;
-        this.year = year;
-        this.color = color;
-        this.damage = damage;
-        this.owner = owner;
-    }
-
     @Override
     public String toString() {
         return "Car{" +

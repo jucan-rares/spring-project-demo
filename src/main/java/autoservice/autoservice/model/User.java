@@ -17,26 +17,18 @@ import java.security.NoSuchAlgorithmException;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userID;
-    @Column(length = 45)
+    @Column
     private String role;
-    @Column(length = 45, unique = true)
+    @Column(unique = true)
     private String username;
-    @Column(length = 256)
+    @Column
     private String password;
-    @Column(length = 45, unique = true)
+    @Column(unique = true)
     private String email;
-    @Column(length = 45, unique = true)
+    @Column(unique = true)
     private String phoneNumber;
-
-    public User(String role, String username, String password, String email, String phoneNumber) {
-        this.role = role;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-    }
 
     public void encrypt() {
 
