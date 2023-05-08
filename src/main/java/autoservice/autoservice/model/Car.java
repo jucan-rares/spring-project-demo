@@ -27,7 +27,6 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "owner_of_the_car")
     private User owner;
-
     @Override
     public String toString() {
         return "Car{" +

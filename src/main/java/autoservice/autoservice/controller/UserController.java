@@ -1,20 +1,57 @@
 package autoservice.autoservice.controller;
 
 import autoservice.autoservice.exception.ResourceNotFoundException;
+import autoservice.autoservice.model.LoginInfo;
 import autoservice.autoservice.model.User;
 import autoservice.autoservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.*;
 import java.util.List;
+import java.util.Objects;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @PostMapping("/login")
+    public ResponseEntity<User> loginUser(@RequestBody LoginInfo loginInfo) {
+
+        User existingUser = userRepository.findByUsername(loginInfo.getUsername());
+
+        if (existingUser == null)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+
+        User dummy = new User();
+        dummy.setPassword(loginInfo.getPassword());
+        dummy.encrypt();
+
+        if (!Objects.equals(existingUser.getPassword(), dummy.getPassword()))
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+
+        return ResponseEntity.status(HttpStatus.FOUND).body(null);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<User> registerUser(@RequestBody User user) {
+
+        User existingUser = userRepository.findByUsername(user.getUsername());
+
+        if (existingUser != null)
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+
+        user.encrypt();
+
+        User savedUser = userRepository.save(user);
+        return ResponseEntity.ok(savedUser);
+    }
 
     @GetMapping
     public List<User> getAllUsers() {
