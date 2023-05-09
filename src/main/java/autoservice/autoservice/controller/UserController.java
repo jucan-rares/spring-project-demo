@@ -16,6 +16,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     @Autowired
@@ -36,7 +37,7 @@ public class UserController {
         if (!Objects.equals(existingUser.getPassword(), dummy.getPassword()))
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 
-        return ResponseEntity.status(HttpStatus.FOUND).body(null);
+        return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
 
     @PostMapping("/register")
