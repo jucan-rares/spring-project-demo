@@ -8,6 +8,10 @@ function Login() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
  
+    async function goToRegister(){
+        navigate("./register")
+    }
+
     async function login(event) {
 
         event.preventDefault();
@@ -29,7 +33,7 @@ function Login() {
              
                 }, 
                 fail => {
-                    console.error(fail);
+                    alert("Wrong credentials")
                 }
             );
         }
@@ -64,6 +68,8 @@ function Login() {
             </div>
 
             <button type="submit" onClick={login}>Log in</button>
+
+            <button type="submit" onClick={goToRegister}>Don't have an account? Click me</button>
         </form>
       </div>
     );
