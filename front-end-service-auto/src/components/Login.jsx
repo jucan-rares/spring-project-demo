@@ -1,16 +1,12 @@
 import {useState} from "react"
-import { useNavigate } from 'react-router-dom';
-import axios from "axios";
+import { useNavigate } from 'react-router-dom'
+import axios from "axios"
  
 function Login() {
   
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     const navigate = useNavigate();
- 
-    async function goToRegister(){
-        navigate("./register")
-    }
 
     async function login(event) {
 
@@ -41,37 +37,28 @@ function Login() {
             alert(err)
         }
     }
-
+    
     return (
-        <div>
-        <form>
-            <div>
-                <label>Username</label>
-                <input 
-                    type="text" 
-                    id="username" 
-                    placeholder="your username here"
-                    value={username}
-                    onChange={(event) => {setUsername(event.target.value)}}
-                />
+        <div class="login-page">
+            <div class="form">
+                <form class="login-form">
+                    <input 
+                        type="text" 
+                        placeholder="username"
+                        value={username}
+                        onChange={(event) => {setUsername(event.target.value)}}
+                    />
+                    <input 
+                        type="password"
+                        placeholder="password"
+                        value={password}
+                        onChange={(event) => {setPassword(event.target.value)}}
+                    />
+                    <button type="submit" onClick={login}>Log in</button>
+                    <p class="message">Not registered? <a href="/register">Create an account</a></p>
+                </form>
             </div>
-
-            <div>
-                <label>Password</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    placeholder="******"
-                    value={password}
-                    onChange={(event) => {setPassword(event.target.value)}}
-                />
-            </div>
-
-            <button type="submit" onClick={login}>Log in</button>
-
-            <button type="submit" onClick={goToRegister}>Don't have an account? Click me</button>
-        </form>
-      </div>
+        </div>
     );
 }
   

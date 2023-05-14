@@ -1,13 +1,13 @@
 import {useState} from "react"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 
 function Register() {
 
-    const[username, setUsername] = useState('')
-    const[password, setPassword] = useState('')
-    const[email, setEmail] = useState('')
-    const[phone, setPhone] = useState('')
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
     const navigate = useNavigate();
 
     async function register(event) {
@@ -30,56 +30,40 @@ function Register() {
             alert(err)
         }
     }
+
     return (
-      <div>
-        <form>
-            <div>
-                <label>Username</label>
-                <input 
-                    type="text" 
-                    id="username" 
-                    placeholder="your username here"
-                    value={username}
-                    onChange={(event) => {setUsername(event.target.value)}}
-                />
-            </div>
-
-            <div>
-                <label>Password</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    placeholder="******"
-                    value={password}
-                    onChange={(event) => {setPassword(event.target.value)}}
-                />
-            </div>
-
-            <div>
-                <label>Email</label>
-                <input 
-                    type="text" 
-                    id="email" 
-                    placeholder="youremail@yahoo.com"
-                    value={email}
-                    onChange={(event) => {setEmail(event.target.value)}}
-                />
-            </div>
-
-            <div>
-                <label>Phone number</label>
-                <input 
-                    type="text" 
-                    id="phone" 
-                    placeholder="your phone number here"
-                    value={phone}
-                    onChange={(event) => {setPhone(event.target.value)}}
-                />
-            </div>
-
-            <button type="submit" onClick={register}>Register</button>
-        </form>
-      </div>
+        <div class="login-page">
+            <div class="form">
+                <form class="register-form">
+                    <input 
+                        type="text" 
+                        placeholder="username"
+                        value={username}
+                        onChange={(event) => {setUsername(event.target.value)}}
+                    />
+                    <input 
+                        type="password" 
+                        placeholder="password"
+                        value={password}
+                        onChange={(event) => {setPassword(event.target.value)}}
+                    />
+                    <input 
+                        type="text" 
+                        placeholder="email address"
+                        value={email}
+                        onChange={(event) => {setEmail(event.target.value)}}
+                    />
+                    <input 
+                        type="text" 
+                        placeholder="phone number" 
+                        value={phone}
+                        onChange={(event) => {setPhone(event.target.value)}}
+                    />
+                    <button type="submit" onClick={register}>Register</button>
+                    <p class="message">Already registered? <a href="/">Sign In</a></p>
+                </form>
+            </div> 
+        </div>
     );
 }
   
