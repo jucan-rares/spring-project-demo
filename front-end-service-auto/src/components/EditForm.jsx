@@ -2,25 +2,25 @@ import {Form, Button} from "react-bootstrap"
 import {useState} from "react"
 import axios from "axios"
 
-const AddForm = () => {
+const EditForm = ({user}) => {
 
-    const [newUser, setNewUser] = useState({username:"", password:"", email:"", phone:""})
+    const[username, setUsername] = useState(user.username)
+    const[email, setEmail] = useState(user.email)
+    const[phone, setPhone] = useState(user.phoneNumber)
 
-    const onInputChange = (e) => {setNewUser({...newUser,[e.target.name]: e.target.value})}
+    const updatedEmployee = {username, email, phone}
 
-    const {username, password, email, phone} = newUser;
-
-    async function handleSubmit(e) {
+    const handleSubmit = async (e) => {
         try{
-            await axios.post("http://localhost:8080/users/register",
+            await axios.put("http://localhost:8080/users/"+ user.userID,
             {
                 role: "client",
-                username:username,
-                password:password,
-                email:email,
-                phoneNumber:phone
+                username: updatedEmployee.username,
+                password: user.password,
+                email: updatedEmployee.email,
+                phoneNumber: updatedEmployee.phone
             })
-            alert("Added user succesfuly")
+            alert("Updated user succesfuly")
         }
         catch(err){
             alert(err)
@@ -35,17 +35,7 @@ const AddForm = () => {
                     placeholder="username"
                     name="username"
                     value={username}
-                    onChange = { (e) => onInputChange(e)}
-                    required
-                />
-            </Form.Group>
-            <Form.Group>
-                <Form.Control
-                    type="password"
-                    placeholder="******"
-                    name="password"
-                    value={password}
-                    onChange = { (e) => onInputChange(e)}
+                    onChange={(e)=> setUsername(e.target.value)}
                     required
                 />
             </Form.Group>
@@ -55,7 +45,7 @@ const AddForm = () => {
                     placeholder="email@yahoo.com"
                     name="email"
                     value={email}
-                    onChange = { (e) => onInputChange(e)}
+                    onChange={(e)=> setEmail(e.target.value)}
                     required
                 />
             </Form.Group>
@@ -65,16 +55,16 @@ const AddForm = () => {
                     placeholder="XXXXXXXXXX"
                     name="phone"
                     value={phone}
-                    onChange = { (e) => onInputChange(e)}
+                    onChange={(e)=> setPhone(e.target.value)}
                     required
                 />
             </Form.Group>
 
             <Button variant="success" type="submit" block>
-                Add new user
+                Update user
             </Button>
         </Form>
      )
 }
 
-export default AddForm;
+export default EditForm;

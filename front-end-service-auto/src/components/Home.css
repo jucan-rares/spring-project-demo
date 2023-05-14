@@ -56,7 +56,9 @@
 }
 
 .btn-add {
-    position:absolute;
-    margin:auto;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-bottom:50px;
     background-color: #435122 
  } 
