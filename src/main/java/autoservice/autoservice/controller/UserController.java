@@ -37,7 +37,7 @@ public class UserController {
         if (!Objects.equals(existingUser.getPassword(), dummy.getPassword()))
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);
+        return ResponseEntity.status(HttpStatus.CREATED).body(existingUser);
     }
 
     @PostMapping("/register")

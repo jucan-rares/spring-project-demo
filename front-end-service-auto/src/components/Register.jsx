@@ -22,7 +22,7 @@ function Register() {
                 email:email,
                 phoneNumber:phone
             }).then((res) => {
-                navigate('/');
+                navigate('/login');
             });
             alert("User registration succesful")
         }
@@ -60,7 +60,7 @@ function Register() {
                         onChange={(event) => {setPhone(event.target.value)}}
                     />
                     <button type="submit" onClick={register}>Register</button>
-                    <p class="message">Already registered? <a href="/">Sign In</a></p>
+                    <p class="message">Already registered? <a href="/login">Sign In</a></p>
                 </form>
             </div> 
         </div>

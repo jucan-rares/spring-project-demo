@@ -18,9 +18,14 @@ function Login() {
                 password:password,
             }).then((res) => {
 
+                console.log(res);
                 if(res.status === 201){
-                    navigate('/home');
+
                     alert("Authentification succesful")
+                    if(res.data.role === "admin")
+                        navigate('/admin-users')
+                    else 
+                        navigate('/home')
                 }
                     
                 else {                
